@@ -1,7 +1,7 @@
 #include "DigiKeyboard.h"
 #include "./VAR.h"
 
-#define DOMAINS "'iipfs.io','cloudflare-ipfs.com'"
+#define DOMAINS "'ipfs.io','cloudflare-ipfs.com'"
 
 const bool login = 0;
 void setup() {
