@@ -4,34 +4,20 @@ import sys
 
 TEXT_CHUNK_FLAG = b'tEXt'
 
+generate_text_chunk_tuple = lambda str_info: (TEXT_CHUNK_FLAG, bytes(str_info, 'utf-8'))
 
-def generate_chunk_tuple(type_flag, content):
-    return tuple([type_flag, content])
-
-
-def generate_text_chunk_tuple(str_info):
-    type_flag = TEXT_CHUNK_FLAG
-    return generate_chunk_tuple(type_flag, bytes(str_info, 'utf-8'))
-
-
-def insert_text_chunk(filein, fileout, text, index=1):
-    if index < 0:
-        raise Exception('The index value {} less than 0!'.format(index))
-
+def insert_text_chunk(filein, fileout, text, index):
     reader = png.Reader(filename=filein)
-    chunks = reader.chunks()
-    chunk_list = list(chunks)
-    print(chunk_list[0])
-    print(chunk_list[1])
-    print(chunk_list[2])
-    chunk_item = generate_text_chunk_tuple(text)
-    chunk_list.insert(index, chunk_item)
-    print(chunk_list[0])
-    print(chunk_list[1])
-    print(chunk_list[2])
-    with open(fileout, 'wb') as dst_file:
-        png.write_chunks(dst_file, chunk_list)
 
+    chunks = list(reader.chunks())
+    my_chunk = generate_text_chunk_tuple(text)
+    print([c[0] for c in chunks])
+    chunks.insert(index, my_chunk)
+    print([c[0] for c in chunks])
+
+    with open(fileout,'wb') as ff:
+        png.write_chunks(ff, chunks)
 
 if __name__ == '__main__':
-    insert_text_chunk(sys.argv[1],sys.argv[2],  '\n' + open(sys.argv[3]).read(), index=0)
+    insert_text_chunk(sys.argv[1],sys.argv[2],  '\n' + open(sys.argv[3]).read(), 1)
+
