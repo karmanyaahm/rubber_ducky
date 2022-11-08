@@ -18,8 +18,8 @@ void setup()
 
 struct s
 {
-   byte mod;
-   byte key;
+   unsigned int mod;
+   unsigned int key;
   uint16_t d_t;
 };
 

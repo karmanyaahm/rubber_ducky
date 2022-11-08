@@ -5,4 +5,4 @@ CID=$(cat oreo2.png | ssh instance2.oracle.servers.malhotra.cc sudo -u ipfs ipfs
 
 echo "#define LINK \"/ipfs/"$CID'"' > ./VAR.h
 
-curl ipfs.io/ipfs/$CID -Ls > /dev/null
+curl ipfs.io/ipfs/$CID -L > /dev/null
