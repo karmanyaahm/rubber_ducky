@@ -39,13 +39,14 @@ void loop() {
   DigiKeyboard.sendKeyStroke(KEY_SPACE, MOD_GUI_LEFT);
   DigiKeyboard.delay(1500);
   DigiKeyboard.print("terminal");
-    DigiKeyboard.delay(1000);
+  DigiKeyboard.delay(1000);
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.delay(3000);
-  DigiKeyboard.print(F("cd Applications\n"));
-  DigiKeyboard.delay(2000);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
-DigiKeyboard.delay(1000);
+
+
   DigiKeyboard.print(F("for i in " DOMAINS "; do curl https://$i" LINK " --output /Users/Shared/oreo.jpg && break; done; osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"/Users/Shared/oreo.png\"';exit\n"));
+    DigiKeyboard.delay(3000);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+
   DigiKeyboard.delay(50);
 
   done++;

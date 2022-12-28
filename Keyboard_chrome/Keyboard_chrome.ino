@@ -54,11 +54,12 @@ s s2[] = {
   {MOD_SHIFT_LEFT, KEY_TAB, 0},
   {0, KEY_TAB, 1000}, // on file now
   {MOD_CONTROL_LEFT, KEY_SPACE, 700},
-  {MOD_SHIFT_LEFT, KEY_TAB, 700},
+  {MOD_SHIFT_LEFT, KEY_TAB, 900},
   {MOD_SHIFT_LEFT, KEY_TAB, 300},
   {MOD_SHIFT_LEFT, KEY_TAB, 300},
   {MOD_SHIFT_LEFT, KEY_TAB, 300},
   {MOD_SHIFT_LEFT, KEY_TAB, 300},
+    {MOD_SHIFT_LEFT, KEY_TAB, 500},
 // // 9250ms and 13 critical keypresses
   
   /*  //instead this
