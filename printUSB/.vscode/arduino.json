@@ -1,0 +1,7 @@
+{
+    "configuration": "clock=clock16,micronucleus=default,burnmode=upgrade",
+    "board": "digistump:avr:digispark-tiny",
+    "programmer": "digistump:micronucleusprog",
+    "sketch": "printUSB.ino",
+    "port": "/dev/ttyS0"
+}
