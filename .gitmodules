@@ -1,0 +1,8 @@
+[submodule "circuitpython/Adafruit_CircuitPython_HID"]
+	path = circuitpython/Adafruit_CircuitPython_HID
+	url = https://github.com/adafruit/Adafruit_CircuitPython_HID
+[submodule "circuitpython/circuitpython"]
+	path = circuitpython/circuitpython
+	url = https://github.com/adafruit/circuitpython.git
+[submodule "circuitpython/circuitpython/"]
+	url = git@github.com:karmanyaahm/circuitpython
