@@ -11,9 +11,9 @@ def insert_text_chunk(filein, fileout, text, index):
 
     chunks = list(reader.chunks())
     my_chunk = generate_text_chunk_tuple(text)
-    print([c[0] for c in chunks])
+    #print([c[0] for c in chunks])
     chunks.insert(index, my_chunk)
-    print([c[0] for c in chunks])
+    #print([c[0] for c in chunks])
 
     with open(fileout,'wb') as ff:
         png.write_chunks(ff, chunks)
