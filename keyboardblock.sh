@@ -1,6 +1,6 @@
 while true; 
 do 
-	for i in `xinput | grep -E '(xiao|trinkey).*\[slave' -i | grep -o 'id=..' | cut -d '=' -f2`
+	for i in `xinput | grep -E '(xiao|trinkey|magic).*\[slave' -i | grep -o 'id=..' | cut -d '=' -f2`
 	do 
 		xinput disable $i
 	        xinput float $i

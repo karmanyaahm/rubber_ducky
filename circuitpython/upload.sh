@@ -5,12 +5,12 @@ pngquant oreo3-1.png -f
 python polyglot.py oreo3-1-fs8.png 1oreo.png script.ps1
 
 set +x
-while ! $(df | grep -q CIRCUITPY); do echo waiting; sleep .2; done;
+while ! $(df | grep -q P); do echo waiting; sleep .2; done;
 
 sleep 2
 set -x
 
-MTPATH="/run/media/karmanyaahm/CIRCUITPY"
+MTPATH="/run/media/karmanyaahm/P"
 cp code.py boot.py 1oreo.png $MTPATH/
 sync $MTPATH $MTPATH/ $MTPATH/code.py $MTPATH/1oreo.png $MTPATH/boot.py
 touch $MTPATH/1oreo.png
