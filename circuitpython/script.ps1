@@ -1,4 +1,10 @@
-$Path=Resolve-Path "1oreo.png"
+Start-Job -ScriptBlock {
+	$myshell = New-Object -com "Wscript.Shell"
+	$myshell.sendkeys("{SCROLLOCK}")
+	sleep -m 400
+	$myshell.sendkeys("{SCROLLOCK}")
+}
+$Path=Resolve-Path "~/oreo.png"
 
 # https://c-nergy.be/blog/?p=17309
 #--------------------------------------------------------------------------------------------------#
