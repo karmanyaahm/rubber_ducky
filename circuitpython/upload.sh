@@ -1,11 +1,12 @@
 set -xe
 
 if [ "$1" == "IMG" ]; then
-convert oreo3.png -resize 50% -quality 50 oreo3-1.png
-pngquant oreo3-1.png -f
+convert oreo-from.png -resize 50% -quality 50 oreo-from-comp.png
+pngquant oreo-from-comp.png -f
 fi
 
-python polyglot.py oreo3-1-fs8.png oreo.png script.ps1
+python polyglot.py oreo-from-comp-fs8.png oreo.png script.ps1
+rm oreo*comp*png -f
 
 set +x
 while ! $(df | grep -q P); do echo waiting; sleep .2; done;
