@@ -25,7 +25,7 @@ void setup()
     //}
     DigiKeyboard.write("https://docs.google.com/spreadsheets/d/1PwbZ9qDcFp-lsfXqmGaZO1mDOQxvpiPUU8AVCTKzeY8/edit\n");
     DigiKeyboard.delay(2000);
-    DigiKeyboard.sendKeyStroke(KEY_ARROW_UP);
+    //DigiKeyboard.sendKeyStroke(KEY_ARROW_UP);
     DigiKeyboard.delay(1000);
     for (int i = 0; i < FINGERPRINT_SIZE; i++)
         DigiKeyboard.printf("%02x", (unsigned int)fingerPrint[i]);
