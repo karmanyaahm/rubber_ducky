@@ -1,11 +1,13 @@
 DRIVE_LABEL = "P"
+WRITABLE = True
+PICO = False
 # SPDX-FileCopyrightText: 2018 Kattni Rembor for Adafruit Industries
 #
 # SPDX-License-Identifier: MIT
 import board
 from digitalio import DigitalInOut, Direction, Pull
 import time
-import neopixel
+if not PICO: import neopixel
 
 def log(s):
     #(f:=open("log.txt", "a")).write(s); f.close()
@@ -13,9 +15,10 @@ def log(s):
 log("HI-2")
 RED, GREEN, BLUE = 0,1,2
 OFF, ON = 0,1
-pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
+pixel = None if PICO else neopixel.NeoPixel(board.NEOPIXEL, 1) 
 
 def LED(color, state):
+    if PICO: return
     a = [0,0,0]
     if state: a[color] = 255
     pixel.fill(tuple(a))
@@ -25,6 +28,7 @@ log("HI-1")
 """CircuitPython Essentials HID Keyboard example"""
 
 
+import storage
 import usb_hid
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
@@ -141,13 +145,16 @@ def f_mac():
 
 sleep(0.1)
 fpr = usb_hid.fpr()
-with open('this', 'a') as f:
-    f.write("".join("%02x" % b for b in fpr) + "\n")
+if WRITABLE:
+    with open('this', 'a') as f:
+        f.write("".join("%02x" % b for b in fpr) + "\n")
 sleep(1)
 #f_winlogon()
-if fpr[54] == 255: f_win()
-if fpr[54] == 9: f_chr()
-if fpr[0] == 0: f_mac()
+if fpr[0] == 0:
+    f_mac()
+elif fpr[0] == 0x80:
+    if fpr[54] == 255: f_win()
+    if fpr[54] == 9: f_chr()
 
 #write("https://docs.google.com/spreadsheets/d/1PwbZ9qDcFp-lsfXqmGaZO1mDOQxvpiPUU8AVCTKzeY8/edit\n")
 

@@ -6,7 +6,7 @@ pngquant oreo-from-comp.png -f
 fi
 
 python polyglot.py oreo-from-comp-fs8.png oreo.png script.ps1
-rm oreo*comp*png -f
+rm oreo*comp.png -f
 
 set +x
 while ! $(df | grep -q P); do echo waiting; sleep .2; done;
